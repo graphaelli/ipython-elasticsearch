@@ -1,5 +1,5 @@
 """Elasticearch IPython magic."""
-from __future__ import print_function
+from __future__ import absolute_import, print_function
 
 import json
 import os
@@ -8,11 +8,14 @@ import urllib.parse
 from IPython.core.magic import Magics, magics_class, line_cell_magic
 import requests
 
+from . import notebook as nb
+
 
 @magics_class
 class ElasticsearchMagics(Magics):
     def __init__(self, **kwargs):
         self._base_url = 'http://localhost:9200/'
+        nb.output_notebook()
         super().__init__(**kwargs)
 
     @property
@@ -42,7 +45,7 @@ class ElasticsearchMagics(Magics):
                                                 url=urllib.parse.urljoin(cell_base_url, path),
                                                 data=data).prepare())
             try:
-                print(json.dumps(rsp.json()))
+                nb.output_cell(rsp.json())
             except json.JSONDecodeError:
                 # TODO: parse charset out of response eg: 'application/json; charset=UTF-8'
                 # >>> requests.get("http://localhost:9200/_search").headers['Content-Type']

@@ -83,11 +83,14 @@ https://github.com/graphaelli/ipython-elasticsearch
 Todo
 ----
 
-- integrate http://caldwell.github.io/renderjson/
-- configurable default elasticsearch endpoint
+- configurables
+  - default elasticsearch endpoint
+  - renderjson styles
+- appropriate default output in console
 - contextual help
 
 Credit
 ------
 
 - https://github.com/catherinedevlin/ipython-sql for serving as a template
+- http://caldwell.github.io/renderjson/ for the collapsable JSON rendering
