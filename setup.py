@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 
-version = '0.1'
+version = '0.1.1'
 
 install_requires = [
     'requests',
@@ -29,6 +29,5 @@ setup(name='ipython-elasticsearch',
       include_package_data=True,
       zip_safe=False,
       install_requires=install_requires,
-      setup_requires=['nose'],
-      test_suite='tests',
+      tests_require=['nose', 'responses'],
 )

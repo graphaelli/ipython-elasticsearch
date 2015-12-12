@@ -1,6 +1,7 @@
 """Elasticearch IPython magic."""
 from __future__ import print_function
 
+import json
 import os
 import urllib.parse
 
@@ -37,9 +38,19 @@ class ElasticsearchMagics(Magics):
             data = body if body else None
 
             session = requests.Session()
-            return session.send(requests.Request(method=method,
-                                                 url=urllib.parse.urljoin(cell_base_url, path),
-                                                 data=data).prepare()).json()
+            rsp = session.send(requests.Request(method=method,
+                                                url=urllib.parse.urljoin(cell_base_url, path),
+                                                data=data).prepare())
+            try:
+                print(json.dumps(rsp.json()))
+            except json.JSONDecodeError:
+                # TODO: parse charset out of response eg: 'application/json; charset=UTF-8'
+                # >>> requests.get("http://localhost:9200/_search").headers['Content-Type']
+                # 'application/json; charset=UTF-8'
+                # >>> requests.get("http://localhost:9200/_cat").headers['Content-Type']
+                # 'text/plain; charset=UTF-8'
+                print(rsp.content.decode('UTF-8'))  # ES [probably] always returns utf-8
+            return rsp
 
 
 def load_ipython_extension(ipy):
