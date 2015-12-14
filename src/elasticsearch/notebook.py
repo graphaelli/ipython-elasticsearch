@@ -220,7 +220,7 @@ def output_cell(json_obj):
     )
 
     IPython.display.display_javascript(jinja2.Template("""
-        document.getElementById('{{ cellid }}').appendChild(renderjson({{ json_str }}));
+        document.getElementById('{{ cellid }}').appendChild(renderjson.set_show_to_level(3)({{ json_str }}));
     """).render(cellid=cellid, json_str=json.dumps(json_obj)), raw=True)
 
 
