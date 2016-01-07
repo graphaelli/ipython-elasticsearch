@@ -9,15 +9,16 @@ import IPython.display
 CSS = """
 .renderjson a              { text-decoration: none; }
 .renderjson .disclosure    { color: crimson;
-                             font-size: 150%; }
+                             font-size: 80%;
+                             text-decoration: none; }
 .renderjson .syntax        { color: grey; }
 .renderjson .string        { color: red; }
 .renderjson .number        { color: cyan; }
 .renderjson .boolean       { color: plum; }
-.renderjson .key           { color: lightblue; }
-.renderjson .keyword       { color: lightgoldenrodyellow; }
-.renderjson .object.syntax { color: lightseagreen; }
-.renderjson .array.syntax  { color: lightsalmon; }
+.renderjson .key           { color: blue; }
+.renderjson .keyword       { color: goldenrodyellow; }
+.renderjson .object.syntax { color: seagreen; }
+.renderjson .array.syntax  { color: salmon; }
 """
 
 JS = r"""// Copyright © 2013-2014 David Caldwell <david@porkrind.org>
@@ -220,7 +221,7 @@ def output_cell(json_obj):
     )
 
     IPython.display.display_javascript(jinja2.Template("""
-        document.getElementById('{{ cellid }}').appendChild(renderjson.set_show_to_level(3)({{ json_str }}));
+        document.getElementById('{{ cellid }}').appendChild(renderjson.set_icons('▶', '▽').set_show_to_level(3)({{ json_str }}));
     """).render(cellid=cellid, json_str=json.dumps(json_obj)), raw=True)
 
 
