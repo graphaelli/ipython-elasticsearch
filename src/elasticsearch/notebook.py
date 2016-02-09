@@ -13,7 +13,7 @@ CSS = """
                              text-decoration: none; }
 .renderjson .syntax        { color: grey; }
 .renderjson .string        { color: red; }
-.renderjson .number        { color: cyan; }
+.renderjson .number        { color: darkmagenta; }
 .renderjson .boolean       { color: plum; }
 .renderjson .key           { color: blue; }
 .renderjson .keyword       { color: goldenrodyellow; }
