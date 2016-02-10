@@ -4,10 +4,18 @@ ipython-elasticsearch
 
 :Author: Gilad Raphaelli, http://g.raphaelli.com
 
-Adds basic %elasticsearch magic.
+Adds %elasticsearch magic.
 
 Examples
 --------
+
+.. image:: notebook.png
+   :height: 1009 px
+   :width: 1103 px
+   :scale: 100%
+   :alt: notebook example
+   :align: center
+   :target: Learn%20Elasticsearch%20with%20Jupyter.ipynb
 
 .. code-block:: python
 
