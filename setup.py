@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 
-version = '0.2'
+version = '0.2.1'
 
 install_requires = [
     'requests',
@@ -21,8 +21,8 @@ setup(name='ipython-elasticsearch',
       ],
       keywords='database ipython elasticsearch',
       author='Gilad Raphaelli',
-      author_email='g@raphaelli',
-      url='pypi.python.org/pypi/ipython-elasticsearch',
+      author_email='g@raphaelli.com',
+      url='https://pypi.python.org/pypi/ipython-elasticsearch',
       license='MIT',
       packages=find_packages('src'),
       package_dir = {'': 'src'},
