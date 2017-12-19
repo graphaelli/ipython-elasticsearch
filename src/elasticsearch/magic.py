@@ -38,12 +38,16 @@ class ElasticsearchMagics(Magics):
             line1 = (cell + os.linesep).find(os.linesep)
             method, path = cell[:line1].split(None, 1)
             body = cell[line1:].strip()
-            data = body if body else None
+            request_args = {}
+            if body:
+                request_args['data'] = body
+                # maybe not always?
+                request_args['headers'] = {'Content-Type': 'application/json'}
 
             session = requests.Session()
             rsp = session.send(requests.Request(method=method,
                                                 url=urllib.parse.urljoin(cell_base_url, path),
-                                                data=data).prepare())
+                                                **request_args).prepare())
             try:
                 nb.output_cell(rsp.json())
             except json.JSONDecodeError:
