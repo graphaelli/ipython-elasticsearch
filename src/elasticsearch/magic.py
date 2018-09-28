@@ -38,6 +38,8 @@ class ElasticsearchMagics(Magics):
             line1 = (cell + os.linesep).find(os.linesep)
             method, path = cell[:line1].split(None, 1)
             body = cell[line1:].strip()
+            if method in ("POST", "PUT") and path.rsplit("/", 1)[-1].startswith("_bulk"):
+                body += "\n"
             request_args = {}
             if body:
                 request_args['data'] = body
